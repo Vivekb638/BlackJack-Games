@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg-primary: #0a0e17;
+  --bg-secondary: #131a2a;
+  --accent-primary: #00f0ff;
+  --accent-secondary: #ff003c;
+  --text-primary: #ffffff;
+  --text-secondary: #8b9bb4;
+  --glass-bg: rgba(19, 26, 42, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --card-bg: #e2e8f0;
+  --shadow-neon: 0 0 15px rgba(0, 240, 255, 0.5);
+  --shadow-neon-red: 0 0 15px rgba(255, 0, 60, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: radial-gradient(circle at top, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+  color: var(--text-primary);
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  max-width: 1200px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Glass panel utility */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Header & Typography */
+h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 2rem;
+  background: linear-gradient(90deg, #fff, var(--accent-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+/* Buttons */
+.btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-primary {
+  background: var(--accent-primary);
+  color: #000;
+  border: none;
+  box-shadow: var(--shadow-neon);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #33f3ff;
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.7);
+}
+
+.btn-danger {
+  background: var(--accent-secondary);
+  color: #fff;
+  border: none;
+  box-shadow: var(--shadow-neon-red);
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: #ff3366;
+  box-shadow: 0 0 25px rgba(255, 0, 60, 0.7);
+}
+
+/* Playing Cards */
+.playing-card {
+  width: 100px;
+  height: 140px;
+  background: var(--card-bg);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1a1a2e;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: slideIn 0.5s ease-out backwards;
+}
+
+.playing-card:hover {
+  transform: translateY(-10px);
+}
+
+.playing-card.hidden {
+  background: linear-gradient(135deg, #2a2a4a 0%, #1a1a3a 100%);
+  color: var(--accent-primary);
+  border: 2px solid var(--accent-primary);
+  box-shadow: var(--shadow-neon);
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 240, 255, 0.1) 10px, rgba(0, 240, 255, 0.1) 20px);
+}
+
+.hand-container {
+  display: flex;
+  gap: -30px;
+  min-height: 150px;
+  padding: 1rem 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hand-container .playing-card {
+  margin-left: -50px;
+}
+.hand-container .playing-card:first-child {
+  margin-left: 0;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.8) rotate(-10deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}
+
+/* Game Info */
+.game-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.balance-badge {
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  color: var(--accent-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bet-input {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid var(--glass-border);
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  width: 120px;
+  text-align: center;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+}
+
+.bet-input:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+.controls-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.message-box {
+  text-align: center;
+  margin: 1.5rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  min-height: 2.5rem;
+  animation: pulse 2s infinite;
+}
+
+.message-box.win { color: var(--accent-primary); text-shadow: var(--shadow-neon); }
+.message-box.lose { color: var(--accent-secondary); text-shadow: var(--shadow-neon-red); }
+.message-box.draw { color: #facc15; text-shadow: 0 0 15px rgba(250, 204, 21, 0.5); }
+.message-box.blackJack { color: #d946ef; text-shadow: 0 0 15px rgba(217, 70, 239, 0.5); }
+
+@keyframes pulse {
+  0% { opacity: 0.8; transform: scale(0.98); }
+  50% { opacity: 1; transform: scale(1.02); }
+  100% { opacity: 0.8; transform: scale(0.98); }
+}
+
+.score-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 8px;
+  margin-left: 0.5rem;
+  font-size: 1rem;
+  color: var(--accent-primary);
+}
+
+.player-area, .dealer-area {
+  margin: 2rem 0;
+  text-align: center;
+}
