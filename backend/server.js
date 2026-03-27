@@ -35,6 +35,10 @@ function calculateScore(hand) {
     return score;
 }
 
+app.get('/', (req, res) => {
+    res.send('Neon Blackjack API Backend is LIVE and Running!');
+});
+
 app.post('/api/init', (req, res) => {
     let { gameId } = req.body;
     let balance = 1000;
