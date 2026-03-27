@@ -185,6 +185,10 @@ app.post('/api/stand', (req, res) => {
     handleStand(session, res);
 });
 
-app.listen(PORT, () => {
-    console.log(`Backend server strictly running on http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
+    app.listen(PORT, () => {
+        console.log(`Backend server strictly running on http://localhost:${PORT}`);
+    });
+}
+
+module.exports = app;
